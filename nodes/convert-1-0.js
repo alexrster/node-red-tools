@@ -29,14 +29,14 @@ module.exports = function (RED) {
     }
 
     function normalizeTo10(payload) {
-        if (typeof payload === formatMap.string) {
+        if (typeof payload === 'string') {
             const p = payload.toLowerCase().trim();
             return formatMap.string.convert(TRUTHY_STRINGS.has(p));
         }
-        if (typeof payload === formatMap.number) {
+        if (typeof payload === 'number') {
             return formatMap.number.convert(payload !== 0);
         }
-        if (typeof payload === formatMap.bool) {
+        if (typeof payload === 'boolean') {
             return formatMap.bool.convert(payload);
         }
         return payload;
