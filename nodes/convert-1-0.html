@@ -1,0 +1,74 @@
+<script type="text/javascript">
+    RED.nodes.registerType("convert-1-0", {
+        category: "function",
+        color: "#C0C0C0",
+        defaults: {
+            name: { value: "" },
+            outFormat: { value: "string" },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-circle-thin",
+        label: function () {
+            return this.name || "convert 1/0";
+        },
+        labelStyle: function () {
+            return this.name ? "node_label_italic" : "";
+        },
+        paletteLabel: "convert 1/0",
+    });
+</script>
+
+<script type="text/html" data-template-name="convert-1-0">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span>Name</span></label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-outFormat"><i class="fa fa-circle-thin"></i> <span>Output</span></label>
+        <select id="node-input-outFormat">
+            <option value="string">String (1/0)</option>
+            <option value="string_on_off">String (ON/OFF)</option>
+            <option value="number">Number (1/0)</option>
+            <option value="bool">Boolean</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="convert-1-0">
+    <p>Converts <code>msg.payload</code> to a normalized 1/0 value, then formats the output.</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string | number | boolean</span></dt>
+        <dd>
+            Strings are lowercased and trimmed. Treated as true if one of:
+            <code>online</code>, <code>true</code>, <code>on</code>, <code>1</code>,
+            <code>open</code>, <code>opened</code>, <code>active</code>.
+            Numbers are true when not <code>0</code>. Booleans map directly.
+        </dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string | number | boolean</span></dt>
+        <dd>
+            Formatted per node setting:
+            <ul>
+                <li><b>String (1/0)</b> — <code>"1"</code> / <code>"0"</code></li>
+                <li><b>String (ON/OFF)</b> — <code>"ON"</code> / <code>"OFF"</code></li>
+                <li><b>Number (1/0)</b> — <code>1</code> / <code>0</code></li>
+                <li><b>Boolean</b> — <code>true</code> / <code>false</code></li>
+            </ul>
+        </dd>
+        <dt>payload_10 <span class="property-type">string</span></dt>
+        <dd>Normalized <code>"1"</code> or <code>"0"</code>.</dd>
+        <dt>payload_bool <span class="property-type">boolean</span></dt>
+        <dd><code>true</code> when <code>payload_10 === "1"</code>.</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>
+        Normalize input and apply the selected output format. Status shows the active format.
+    </p>
+</script>

@@ -1,0 +1,27 @@
+{
+  "name": "@alexrster/node-red-tools",
+  "version": "0.0.1",
+  "description": "Node-RED node that converts payloads to 1/0, ON/OFF, number, or boolean",
+  "license": "MIT",
+  "keywords": [
+    "node-red",
+    "convert",
+    "boolean",
+    "1/0",
+    "on/off"
+  ],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexrster/node-red-tools.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "convert-1-0": "nodes/convert-1-0.js"
+    }
+  }
+}
