@@ -1,6 +1,6 @@
 {
   "name": "@alexrster/node-red-tools",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node-RED node that converts payloads to 1/0, ON/OFF, number, or boolean",
   "license": "MIT",
   "keywords": [

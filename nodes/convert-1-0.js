@@ -32,12 +32,10 @@ module.exports = function (RED) {
         if (typeof payload === 'string') {
             const p = payload.toLowerCase().trim();
             return formatMap.string.convert(TRUTHY_STRINGS.has(p));
-        }
-        if (typeof payload === 'number') {
-            return formatMap.number.convert(payload !== 0);
-        }
-        if (typeof payload === 'boolean') {
-            return formatMap.bool.convert(payload);
+        } else if (typeof payload === 'number') {
+            return formatMap.string.convert(payload !== 0);
+        } else if (typeof payload === 'boolean') {
+            return formatMap.string.convert(payload);
         }
         return payload;
     }
