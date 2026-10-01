@@ -58,14 +58,16 @@ module.exports = function (RED) {
                 node.send.apply(node, arguments);
             };
 
-            msg.payload_10 = normalizeTo10(msg.payload);
-            msg.payload_bool = msg.payload_10 === "1";
-            msg.payload = formatMap[outFormat]?.convert?.(msg.payload_bool) || msg.payload;
-
-            send(msg);
-            if (done) {
-                done();
+            try {
+                msg.payload_10 = normalizeTo10(msg.payload);
+                msg.payload_bool = msg.payload_10 === "1";
+                msg.payload = formatMap[outFormat].convert(msg.payload_bool);
+            } catch (error) {
+                node.error(`Error converting payload: ${error.message}`);
+                return;
             }
+
+            send(msg, done);
         });
     }
 
